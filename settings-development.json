@@ -1,8 +1,9 @@
 {
   "public": {
     "appName": "My new app",
-    "appDescription": "The best app eva."
+    "appDescription": "- *App description.*\n\n- In markdown format."
   },
+
   "private": {
     "MAIL_URL": "",
     "OAuth": {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Grid } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
@@ -25,9 +25,6 @@ import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 import Profile from '../../pages/Profile/Profile';
 import NotFound from '../../pages/NotFound/NotFound';
 import Footer from '../../components/Footer/Footer';
-import Terms from '../../pages/Terms/Terms';
-import Privacy from '../../pages/Privacy/Privacy';
-import ExamplePage from '../../pages/ExamplePage/ExamplePage';
 import VerifyEmailAlert from '../../components/VerifyEmailAlert/VerifyEmailAlert';
 import getUserName from '../../../modules/get-user-name';
 
@@ -65,9 +62,6 @@ const App = props => (
             <Route name="verify-email" path="/verify-email/:token" component={VerifyEmail} />
             <Route name="recover-password" path="/recover-password" component={RecoverPassword} />
             <Route name="reset-password" path="/reset-password/:token" component={ResetPassword} />
-            <Route name="terms" path="/terms" component={Terms} />
-            <Route name="privacy" path="/privacy" component={Privacy} />
-            <Route name="examplePage" path="/example-page" component={ExamplePage} />
             <Route component={NotFound} />
           </Switch>
         </Grid>
