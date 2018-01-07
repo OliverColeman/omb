@@ -17,10 +17,13 @@ Documents.deny({
   remove: () => true,
 });
 
-Documents.schema = new SimpleSchema({
+Documents.schema = {
   owner: {
     type: String,
     label: 'The ID of the user this document belongs to.',
+    autoValue() {
+      if (this.isInsert) return this.userId;
+    },
   },
   createdAt: {
     type: String,
@@ -44,8 +47,7 @@ Documents.schema = new SimpleSchema({
     type: String,
     label: 'The body of the document.',
   },
-});
-
-Documents.attachSchema(Documents.schema);
+};
+Documents.attachSchema(new SimpleSchema(Documents.schema));
 
 export default Documents;
