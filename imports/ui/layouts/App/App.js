@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Helmet} from "react-helmet";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Grid } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
@@ -36,6 +37,12 @@ const App = props => (
   <Router>
     {!props.loading ? (
       <div className="App">
+
+        <Helmet>
+          <title>{Meteor.settings.public.appName}</title>
+          <meta name="description" content={Meteor.settings.public.appDescription} />
+        </Helmet>
+
         {props.authenticated ?
           <VerifyEmailAlert
             userId={props.userId}
