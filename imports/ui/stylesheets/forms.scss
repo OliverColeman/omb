@@ -1,12 +1,11 @@
-@import './mixins';
-@import './colors';
+@import './variables';
 
 form {
   label,
   .control-label {
     display: block;
   }
-  
+
   label.error {
     display: block;
     margin-top: 8px;
