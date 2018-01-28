@@ -26,17 +26,17 @@ Documents.schema = {
     },
   },
   createdAt: {
-    type: String,
-    label: 'The date this document was created.',
+    type: Number,
+    label: 'The timestamp (ms) at document creation.',
     autoValue() {
-      if (this.isInsert) return (new Date()).toISOString();
+      if (this.isInsert) return Date.now();
     },
   },
   updatedAt: {
-    type: String,
-    label: 'The date this document was last updated.',
+    type: Number,
+    label: 'The timestamp (ms) this document was last updated.',
     autoValue() {
-      if (this.isInsert || this.isUpdate) return (new Date()).toISOString();
+      if (this.isInsert || this.isUpdate) return Date.now();
     },
   },
   title: {

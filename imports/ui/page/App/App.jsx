@@ -9,14 +9,15 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Roles } from 'meteor/alanning:roles';
 
+import DocumentsCollection from '../../../api/Documents/Documents';
+
 import Navigation from '../../nav/Navigation/Navigation';
 import Authenticated from '../../nav/Authenticated/Authenticated';
 import Public from '../../nav/Public/Public';
 import Index from '../Index/Index';
-import Documents from '../../document/Documents/Documents';
-import NewDocument from '../../document/NewDocument/NewDocument';
+import DocumentRoute from '../../nav/DocumentRoute/DocumentRoute';
+import DocumentsList from '../../document/DocumentsList/DocumentsList';
 import ViewDocument from '../../document/ViewDocument/ViewDocument';
-import EditDocument from '../../document/EditDocument/EditDocument';
 import Signup from '../../account/Signup/Signup';
 import Login from '../../account/Login/Login';
 import Logout from '../../account/Logout/Logout';
@@ -52,10 +53,8 @@ const App = props => (
         <Grid>
           <Switch>
             <Route exact name="index" path="/" component={Index} />
-            <Authenticated exact path="/documents" component={Documents} {...props} />
-            <Authenticated exact path="/documents/new" component={NewDocument} {...props} />
-            <Authenticated exact path="/documents/:_id" component={ViewDocument} {...props} />
-            <Authenticated exact path="/documents/:_id/edit" component={EditDocument} {...props} />
+            <Authenticated exact path="/documents" component={DocumentsList} {...props} />
+            <Authenticated exact path="/documents/:_id" component={DocumentRoute} docComponent={ViewDocument} collection={DocumentsCollection} goToOnRemove={'/documents'} {...props} />
             <Authenticated exact path="/profile" component={Profile} {...props} />
             <Public path="/signup" component={Signup} {...props} />
             <Public path="/login" component={Login} {...props} />
