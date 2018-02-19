@@ -1,4 +1,5 @@
 import React from 'react';
+import autoBind from 'react-autobind';
 import { Row, Col, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
@@ -11,7 +12,7 @@ import validate from '../../../modules/validate';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    autoBind(this);
   }
 
   componentDidMount() {
@@ -36,12 +37,12 @@ class Login extends React.Component {
           required: 'Need a password here.',
         },
       },
-      submitHandler() { component.handleSubmit(); },
+      submitHandler() { component.handleSubmit(component.form); },
     });
   }
 
-  handleSubmit() {
-    Meteor.loginWithPassword(this.emailAddress.value, this.password.value, (error) => {
+  handleSubmit(form) {
+    Meteor.loginWithPassword(form.emailAddress.value, form.password.value, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
@@ -73,7 +74,6 @@ class Login extends React.Component {
                 <input
                   type="email"
                   name="emailAddress"
-                  ref={emailAddress => (this.emailAddress = emailAddress)}
                   className="form-control"
                 />
               </FormGroup>
@@ -85,7 +85,6 @@ class Login extends React.Component {
                 <input
                   type="password"
                   name="password"
-                  ref={password => (this.password = password)}
                   className="form-control"
                 />
               </FormGroup>

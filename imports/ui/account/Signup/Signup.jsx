@@ -1,4 +1,5 @@
 import React from 'react';
+import autoBind from 'react-autobind';
 import { Row, Col, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -14,7 +15,7 @@ import validate from '../../../modules/validate';
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    autoBind(this);
   }
 
   componentDidMount() {
@@ -53,20 +54,20 @@ class Signup extends React.Component {
           minlength: 'Please use at least six characters.',
         },
       },
-      submitHandler() { component.handleSubmit(); },
+      submitHandler() { component.handleSubmit(component.form); },
     });
   }
 
-  handleSubmit() {
+  handleSubmit(form) {
     const { history } = this.props;
 
     Accounts.createUser({
-      email: this.emailAddress.value,
-      password: this.password.value,
+      email: form.emailAddress.value,
+      password: form.password.value,
       profile: {
         name: {
-          first: this.firstName.value,
-          last: this.lastName.value,
+          first: form.firstName.value,
+          last: form.lastName.value,
         },
       },
     }, (error) => {
@@ -105,7 +106,6 @@ class Signup extends React.Component {
                     <input
                       type="text"
                       name="firstName"
-                      ref={firstName => (this.firstName = firstName)}
                       className="form-control"
                     />
                   </FormGroup>
@@ -116,7 +116,6 @@ class Signup extends React.Component {
                     <input
                       type="text"
                       name="lastName"
-                      ref={lastName => (this.lastName = lastName)}
                       className="form-control"
                     />
                   </FormGroup>
@@ -127,7 +126,6 @@ class Signup extends React.Component {
                 <input
                   type="email"
                   name="emailAddress"
-                  ref={emailAddress => (this.emailAddress = emailAddress)}
                   className="form-control"
                 />
               </FormGroup>
@@ -136,7 +134,6 @@ class Signup extends React.Component {
                 <input
                   type="password"
                   name="password"
-                  ref={password => (this.password = password)}
                   className="form-control"
                 />
                 <InputHint>Use at least six characters.</InputHint>

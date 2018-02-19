@@ -1,14 +1,23 @@
 /* eslint-disable consistent-return */
 
+import _ from 'lodash';
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 
 let action;
 
 const updateUser = (userId, { emailAddress, profile }) => {
   try {
+    const currentProfile = Meteor.users.findOne({ _id: userId });
+    const currentEmail = _.get(currentProfile, 'emails.0.address', '');
+
+    if (currentEmail.toLowerCase() !== emailAddress.toLowerCase()) {
+      Accounts.addEmail(userId, emailAddress);
+      Accounts.removeEmail(userId, currentEmail);
+    }
+
     Meteor.users.update(userId, {
       $set: {
-        'emails.0.address': emailAddress,
         profile,
       },
     });

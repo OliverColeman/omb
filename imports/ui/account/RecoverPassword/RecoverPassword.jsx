@@ -1,4 +1,5 @@
 import React from 'react';
+import autoBind from 'react-autobind';
 import { Row, Col, Alert, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -11,7 +12,7 @@ import validate from '../../../modules/validate';
 class RecoverPassword extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    autoBind(this);
   }
 
   componentDidMount() {
@@ -30,13 +31,13 @@ class RecoverPassword extends React.Component {
           email: 'Is this email address correct?',
         },
       },
-      submitHandler() { component.handleSubmit(); },
+      submitHandler() { component.handleSubmit(component.form); },
     });
   }
 
-  handleSubmit() {
+  handleSubmit(form) {
     const { history } = this.props;
-    const email = this.emailAddress.value;
+    const email = form.emailAddress.value;
 
     Accounts.forgotPassword({ email }, (error) => {
       if (error) {
@@ -63,7 +64,6 @@ class RecoverPassword extends React.Component {
                 <input
                   type="email"
                   name="emailAddress"
-                  ref={emailAddress => (this.emailAddress = emailAddress)}
                   className="form-control"
                 />
               </FormGroup>
