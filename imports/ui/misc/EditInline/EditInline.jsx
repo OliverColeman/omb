@@ -13,6 +13,7 @@ import './EditInline.scss';
 /**
  * Provides a component that allows editing fields in Meteor Collection
  * documents inline. Supported types are 'textfield', 'textarea' and 'color'.
+ * Based on https://github.com/kaivi/riek
  * Proptypes:
  * - doc: the (Meteor collection) document to update.
  * - field: the name of the field to edit.
