@@ -12,6 +12,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { withTracker } from 'meteor/react-meteor-data';
 
+import AccountPageFooter from '../AccountPageFooter/AccountPageFooter';
 import InputHint from '../../misc/InputHint/InputHint';
 import validate from '../../../modules/validate';
 

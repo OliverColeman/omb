@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import autoBind from 'react-autobind';
 import { Link } from 'react-router-dom';
 import { Table, Alert, Button } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
@@ -16,9 +17,7 @@ import './DocumentsList.scss';
 class DocumentsList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleRemove = this.handleRemove.bind(this);
-    this.handleNew = this.handleNew.bind(this);
+    autoBind(this);
   }
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "Oliver's Meteor Base",
+  "name": "oliversmeteorbase",
   "private": true,
   "scripts": {
     "start": "meteor --settings settings-development.json",

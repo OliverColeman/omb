@@ -9,11 +9,11 @@ Based on [Pup](http://cleverbeagle.com/pup).
 
 In no particular order:
 * Reorganised `imports/ui` directory structure.
-* Adds EditInline component for editing Meteor Collection document fields inline.
 * Uses settings file to set app name and description via markdown.
+* Adds EditInline component for editing Meteor Collection document fields inline.
+* Removes document edit/add page in favour of inline field editing from document view page.
 * Adds Pager (easy paging through collection queries) and ExpandControl components.
 * Use numeric timestamps on document creation/update time fields.
-* Improved Method error handling and reporting ([more info here](https://github.com/cleverbeagle/pup/issues/49#issuecomment-336343629)).
 
 
 ### To do

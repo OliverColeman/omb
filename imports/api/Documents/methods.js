@@ -3,7 +3,8 @@ import { check } from 'meteor/check';
 import rateLimit from '../../modules/rate-limit';
 
 import Documents from './Documents';
-import { getSchemaFieldTypes, throwMethodException } from '../Utility/methodutils';
+import handleMethodException from '../../modules/handle-method-exception';
+import { getSchemaFieldTypes } from '../Utility/methodutils';
 
 
 Meteor.methods({
@@ -13,7 +14,7 @@ Meteor.methods({
     try {
       return Documents.insert({ owner: this.userId, ...doc });
     } catch (exception) {
-      throwMethodException(exception);
+      handleMethodException(exception);
     }
   },
 
@@ -25,7 +26,7 @@ Meteor.methods({
       Documents.update(documentId, { $set: doc });
       return documentId; // Return _id so we can redirect to document after update.
     } catch (exception) {
-      throwMethodException(exception);
+      handleMethodException(exception);
     }
   },
 
@@ -35,7 +36,7 @@ Meteor.methods({
     try {
       return Documents.remove(documentId);
     } catch (exception) {
-      throwMethodException(exception);
+      handleMethodException(exception);
     }
   },
 });

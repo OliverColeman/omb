@@ -1,5 +1,6 @@
 import React from 'react';
-import { createContainer } from 'meteor/react-meteor-data';
+import autoBind from 'react-autobind';
+import { withTracker } from 'meteor/react-meteor-data';
 import { ButtonToolbar, ButtonGroup, Button, Alert, DropdownButton, SplitButton, MenuItem } from 'react-bootstrap';
 
 import './Pager.scss';
@@ -8,8 +9,7 @@ import './Pager.scss';
 class Pager extends React.Component {
   constructor(props) {
     super(props);
-
-    this.flip = this.flip.bind(this);
+    autoBind(this);
   }
 
 
@@ -74,11 +74,11 @@ class Pager extends React.Component {
 }
 
 
-export default createContainer(({ collection, selector, start, limit, onLimitChange }) => {
+export default withTracker(({ collection, selector, start, limit, onLimitChange }) => {
   return {
     itemCount: collection.find(selector).count(),
     start,
     limit,
     onLimitChange,
   };
-}, Pager);
+})(Pager);

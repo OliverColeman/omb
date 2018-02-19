@@ -43,16 +43,4 @@ const getSchemaFieldTypes = (schema, doc, includeId) => {
 }
 
 
-const throwMethodException = (exception) => {
-  const message =
-    (exception.santizedError && exception.sanitizedError.message)
-    ? exception.sanitizedError.message
-    : exception.message || exception.reason || exception;
-
-  console.error("Method exception: " + message);
-
-  throw new Meteor.Error(500, message);
-};
-
-
-export { getSchemaFieldTypes, throwMethodException };
+export { getSchemaFieldTypes };
